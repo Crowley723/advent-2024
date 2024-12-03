@@ -8,19 +8,19 @@ import (
 )
 
 func main() {
-	leftList, rightList, err := utils.LoadFile("input.txt")
+	Day1Inputs, err := utils.LoadFile("input.txt", Parse)
 
 	if err != nil {
 		panic(err)
 	}
 
-	sort.Ints(leftList)
-	sort.Ints(rightList)
+	sort.Ints(Day1Inputs.LeftList)
+	sort.Ints(Day1Inputs.RightList)
 
 	sumList := make([]int, 0)
 
-	for index, leftValue := range leftList {
-		difference := utils.Abs(leftValue - rightList[index])
+	for index, leftValue := range Day1Inputs.LeftList {
+		difference := utils.Abs(leftValue - Day1Inputs.RightList[index])
 		sumList = append(sumList, difference)
 	}
 	sort.Ints(sumList)
@@ -31,10 +31,10 @@ func main() {
 	fmt.Printf("The sum of the differences (Part 1) is: %d\n", sum)
 	//END PART 1 -- START PART 2
 
-	rightOccurrenceMap := utils.MapOccurrences(rightList)
+	rightOccurrenceMap := utils.MapOccurrences(Day1Inputs.RightList)
 	sum = 0
 
-	for _, value := range leftList {
+	for _, value := range Day1Inputs.LeftList {
 		sum += value * rightOccurrenceMap[value]
 	}
 	fmt.Printf("The similarity score (Part 2) is: %d\n", sum)

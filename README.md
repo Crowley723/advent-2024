@@ -12,6 +12,7 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/), a series of d
 
 [...]
 
+
 ## Journal
 ### Day 1
 #### Part 1
@@ -24,3 +25,5 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/), a series of d
 - Find the number of occurrences of each value in the right array.
 - Multiply each number in the left array by the occurrences in the right array.
 - Sum
+
+---
