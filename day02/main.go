@@ -14,15 +14,31 @@ func main() {
 	}
 	var totalSafe int
 	for _, row := range Day2Inputs.Grid {
-		if validateRow(row) {
+		if modifyAndValidate(row) {
 			totalSafe++
 		}
 	}
 	fmt.Printf("Total Safe Reports: %d\n", totalSafe)
 }
 
+func modifyAndValidate(row []int) bool {
+	if validateRow(row) {
+		return true
+	}
+
+	for index, _ := range row {
+		if validateRow(utils.RemoveElement(row, index)) {
+			return true
+		}
+	}
+	return false
+}
+
 func validateRow(row []int) bool {
-	var trend int = 0
+	var (
+		trend int = 0
+	)
+
 	for colIndex := 0; colIndex < len(row)-1; colIndex++ {
 		diff := utils.Abs(row[colIndex] - row[colIndex+1])
 		if diff < 1 || diff > 3 {
